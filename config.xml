@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" defaultlocale="en" version="1.3.0">
+	<name>Time Counter</name>
+	<description xml:lang="ru">Статистика времени</description>
+	<description xml:lang="en">Time statistics</description>
+	<author email="ortodox.kos1nus@gmail.com">kos1nus</author>
+	<icon src="img/logo.png"/>
+</widget>

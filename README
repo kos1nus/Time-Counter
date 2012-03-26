@@ -1,0 +1,9 @@
+This plugin gathers statistics of the time spent in Internet. Graphic is build from the collected data in percentage ratio. You can see how much time you spent on websites on this graphic.
+
+There are two kinds of statistics. On the first kind you can see your full statistics for all period. On the second kind you can see your daily statistics. Also, you have an opportunity for making your own pattern, that will gather statistics for the website but you should have rather big knowledge to make it.
+
+For example, pattern for user's page on Facebook can be such as this "www.facebook.com\/([^/^?]+)" (without quotes). You should use mass storage brackets for matching of pattern (it's important to use only one pair of brackets).
+
+Statistics is gathering with imprecision. It depends on realization problems. That's why sometimes it can shows smaller than real time.
+
+test

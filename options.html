@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+<head>
+	<title>Options</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style>
+	body{
+		margin:15px auto;
+		max-width: 600px;
+	}
+	fieldset{
+		background:rgba(150,160,200,0.25);
+		position:relative;
+		width:560px;
+		border-radius:10px;
+		margin: 10px;
+		text-align:center;
+	}
+	
+	#pattern{width:200px;}
+	</style>
+	<link rel="shortcut icon" href="img/favicon.png" />
+	<script type="text/javascript" src="js/include.js"></script>
+	<script type="text/javascript" src="js/options.js"></script>
+</head>
+<body>
+<fieldset>
+<legend id="option_leg_1">#</legend>
+	<table align="center"><tr align="center"><td>
+		<select id="SelectRegExp" name="mySelect"></select>
+		<input type="text" id='pattern' />
+		<input type="button" id='option_add' onclick='AddPattern()' />
+		<input type="button" id='option_edit' onclick='EditPattern()' />
+		<input type="button" id='option_del' onclick='DelPattern()' />
+	</td></tr><tr align="center"><td>	
+		<input type="button" id='option_pettern_test' onclick='testIt()' />
+		<input type="button" id='option_set_default' onclick='SetDefault()' />
+	</table></tr></td>
+</fieldset>	
+<fieldset>
+<legend id="option_leg_2">#</legend>
+	<select id="SelectThreeLVLDomain" name="mySelect"></select>
+	<input type="button" id='option_add' onclick='AddThreeLVLDomain()' />
+	<input type="button" id='option_edit' onclick='EditThreeLVLDomain()' />
+	<input type="button" id='option_del' onclick='DelThreeLVLDomain()' />
+</fieldset>	
+<legend id="option_leg_3">#</legend>
+	<select id="SelectThreeLVLDomain" name="mySelect"></select>
+	<input type="button" id='option_add' onclick='AddThreeLVLDomain()' />
+	<input type="button" id='option_edit' onclick='EditThreeLVLDomain()' />
+	<input type="button" id='option_del' onclick='DelThreeLVLDomain()' />
+</fieldset>
+<fieldset>
+<legend id="option_leg_4">#</legend>
+	<label id='option_label_reset'>#</label><br>
+	<input type='button' id='option_Reset' onclick='ResetData()' />
+</fieldset>	
+<fieldset>
+<legend id="option_leg_5">#</legend>
+	<div id='option_about'>#</div>
+</fieldset>	
+</body>
+</html>
