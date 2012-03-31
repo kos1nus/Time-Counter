@@ -1,16 +1,21 @@
+﻿//облать перменных
 var UserRegExpPattern, select_pattern, txt_pattern, ThreeLVLDomain, select_ThreeLVLDomain;
 			
-addEventListener('DOMContentLoaded',Fload,false);
-			
+//Присоединяем уникальный срипт браузера
+if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js',function(){Fload();});
+
+//стартовая функция			
 function Fload(){
-	//�����������
+	//локализация
 	var dom_elems = document.querySelectorAll('input[type="button"]');
 		for(var i=0; i<dom_elems.length; i++) if(i18n(dom_elems[i].id)!='undefined')dom_elems[i].value = i18n(dom_elems[i].id);
 	var dom_elems = document.querySelectorAll('legend, label');
-		for(var i=0; i<dom_elems.length; i++) if(i18n(dom_elems[i].id)!='undefined')dom_elems[i].innerHTML = i18n(dom_elems[i].id);	
+		for(var i=0; i<dom_elems.length; i++) if(i18n(dom_elems[i].id)!='undefined')dom_elems[i].innerHTML = i18n(dom_elems[i].id);
+	var dom_elems = document.querySelectorAll('input[type="checkbox"]');
+		for(var i=0; i<dom_elems.length; i++) if(i18n(dom_elems[i].id)!='undefined')dom_elems[i].title = i18n(dom_elems[i].id);		
 	QSF('#option_about').innerHTML = GetAbout();
 	
-	//������
+	//Пользовательский шаблон
 	select_pattern = QSF('#SelectRegExp');
 	txt_pattern = QSF('#pattern');
 	select_pattern.addEventListener('change',function(){GetPattern(this.value);},false);
@@ -22,16 +27,19 @@ function Fload(){
 		txt_pattern.value = UserRegExpPattern[select_pattern.selectedIndex][1];
 	}
 	
-	//3-���������� ������
+	//3-хуровневые домена
 	select_ThreeLVLDomain = QSF('#SelectThreeLVLDomain');
 	
 	ThreeLVLDomain = JSON.parse(local.getItem('ThreeLVLDomain'));
 	var count = ThreeLVLDomain.length;
-	if(count>0) 	for(var i=0; i<count; i++){select_ThreeLVLDomain.options[i]=new Option(ThreeLVLDomain[i],i);}
+	if(count>0) for(var i=0; i<count; i++){select_ThreeLVLDomain.options[i]=new Option(ThreeLVLDomain[i],i);}
+
+	//настройка времени простоя
+	ChengeIDLEcheck((local.getItem('IdleTime')>0)?true:false);
 }
 		
 		
-//�������		
+//шаблоны		
 function AddPattern(){
 	var name = prompt(i18n('alert_pattern_name'));
 		if(name=='' || name==null) return;
@@ -103,7 +111,7 @@ function testIt(){
 function GetPattern(idx){txt_pattern.value = UserRegExpPattern[idx][1];}	
 function SetDefault(){if(select_pattern.selectedIndex!=-1){local.setItem('DomainIdPage', UserRegExpPattern[select_pattern.selectedIndex][0]);}}
 
-//3-���������� ������
+//3-хуровневые домена
 function AddThreeLVLDomain(){
 	var name = prompt(i18n('alert_add_ThreeLVLDomain'));
 		if(name=='' || name==null) return;
@@ -136,7 +144,7 @@ function DelThreeLVLDomain(){
 	}	
 }
 
-//����� ������
+//сброс данных
 function ResetData(){
 	if(prompt(i18n('alert_reset')) == 'reset'){
 		local.clear();
@@ -145,8 +153,33 @@ function ResetData(){
 		local.setItem('TOTAL', JSON.stringify([]));
 		local.setItem('D_'+GetCurDate().full, JSON.stringify([]));
 		local.setItem('ThreeLVLDomain', JSON.stringify(['google.com','google.ru','ucoz.ru','narod.ru']));
+		local.setItem('IdleTime', 5);
 		alert('OK');
 		window.location.reload();
 	}else
 		alert(i18n('alert_no_reset'));
+}
+
+//изменени время простоя 
+function IdleRangeCH(){
+	QSF('#option_idle_label').innerHTML = QSF('#option_idle_range').value+' m.';
+	local.setItem('IdleTime', QSF('#option_idle_range').value);
+	FuncChangeIdleTime();
+}
+
+function ChengeIDLEcheck(boo){	
+	QSF('#option_idle_check').checked = boo;
+	if(boo == true){
+		var tmp = Math.abs(local.getItem('IdleTime'));
+		local.setItem('IdleTime', tmp);
+		QSF('#option_idle_label').innerHTML = tmp+' m.';
+		var range = QSF('#option_idle_range');
+			range.value = tmp;
+			range.disabled =false;
+	}else{
+		QSF('#option_idle_label').innerHTML = '--';
+		QSF('#option_idle_range').disabled = true;
+		local.setItem('IdleTime', Math.abs(local.getItem('IdleTime'))*-1);
+	}
+	FuncChangeIdleTime();
 }

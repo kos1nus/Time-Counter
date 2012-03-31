@@ -1,7 +1,4 @@
-﻿//Присоединяем уникальный срипт браузера
-if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js');
-
-//Вся остальная поепень
+﻿//Вся остальная поепень
 var local = window.localStorage;
 
 var er = function(o){if (local.getItem('debug') == 1) return console.log(o);}//Спамит сообщения в консоль. Требует ключа debug в localStorage
@@ -41,10 +38,18 @@ function GetCurDate(){//возвращает текущую дату.
 	return {full:CurDate, d:dt.getDate(), m:dt.getMonth(), y:dt.getFullYear()};
 }
 
-function include(filename){//Динамическое подключение скриптов
-	var head = document.getElementsByTagName('head')[0];
-	var script = document.createElement('script');
-	script.src = filename;
-	script.type = 'text/javascript';	
-	head.appendChild(script);
+function include(url,callback){
+    // adding the script tag to the head as suggested before
+   var head = document.getElementsByTagName('head')[0];
+   var script = document.createElement('script');
+   script.type = 'text/javascript';
+   script.src = url;
+
+   // then bind the event to the callback function 
+   // there are several events for cross browser compatibility
+   script.onreadystatechange = callback;
+   script.onload = callback;
+
+   // fire the loading
+   head.appendChild(script);
 }

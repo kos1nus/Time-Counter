@@ -1,4 +1,4 @@
-﻿{	
+{	
 	"month_0":{"message":"Jan"},
 	"month_1":{"message":"Feb"},
 	"month_2":{"message":"Mar"},
@@ -11,6 +11,7 @@
 	"month_9":{"message":"Oct"},
 	"month_10":{"message":"Nov"},
 	"month_11":{"message":"Dec"},
+	"no_statistic":{"message":"Is currently very little statistical data.<br> Try to access the plugin later."},
 	"input_TTL":{"message":"Total"},	
 	"input_ToDay":{"message":"By days"},	
 	"input_UsReEx":{"message":"User pattern"},	
@@ -35,10 +36,11 @@
 	"option_Reset":{"message": "Hard reset"},	
 	"option_leg_1":{"message": "User pattern setting"},	
 	"option_leg_2":{"message": "Three-level domains"},	
-	"option_leg_3":{"message": "          "},	
+	"option_leg_3":{"message": "###"},	
 	"option_leg_4":{"message": "Reset"},	
 	"option_leg_5":{"message": "About"},
 	"option_label_reset":{"message": "ATTENTION! is to remove all of your statistics and settings"},	
+	"option_idle_label":{"message":""},
 	"alert_pattern_name":{"message": "Enter name of pattern"},	
 	"alert_error_pattern_name":{"message": "Name of pattern can't be empty!"},	
 	"alert_patten":{"message": "Enter pattern"},	
@@ -53,5 +55,6 @@
 	"alert_test_excellent":{"message": "URl match with pattern"},	
 	"alert_test_fail":{"message": "URl doesn't match with pattern"},
 	"alert_reset":{"message": "For hard reset enter \"reset\" in input field and press OK"},
-	"alert_no_reset":{"message": "Data is not cleared"}
+	"alert_no_reset":{"message": "Data is not cleared"},
+	"option_idle_check":{"message":"Enable"}
 }

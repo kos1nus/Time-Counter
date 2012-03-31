@@ -11,6 +11,7 @@
 	"month_9":{"message":"Окт"},
 	"month_10":{"message":"Ноя"},
 	"month_11":{"message":"Дек"},
+	"no_statistic":{"message":"На данный момент статистических данных очень мало.<br> Показывать пока нечего."},
 	"input_TTL":{"message":"Всего"},
 	"input_ToDay":{"message":"Дневная"},
 	"input_UsReEx":{"message":"Свой шаблон"},
@@ -34,11 +35,12 @@
 	"option_del":{"message": "-"},
 	"option_Reset":{"message": "Сделать общий сброс"},	
 	"option_leg_1":{"message": "Настройка пользовательского шаблона"},	
-	"option_leg_2":{"message": "Время простоя"},	
-	"option_leg_3":{"message": "Three-level domains"},	
+	"option_leg_2":{"message": "Трехуровневые домена"},	
+	"option_leg_3":{"message": "Время простоя"},	
 	"option_leg_4":{"message": "Сброс"},	
 	"option_leg_5":{"message": "О расширении"},	
 	"option_label_reset":{"message": "ВНИМАНИЕ! Это удалит всю вашу статистику и настройки"},
+	"option_idle_label":{"message":""},
 	"alert_pattern_name":{"message": "Введите название шаблона"},
 	"alert_error_pattern_name":{"message": "Имя шаблона не может быть пустым"},
 	"alert_patten":{"message": "Введите шаблон"},
@@ -53,5 +55,6 @@
 	"alert_test_excellent":{"message": "URl соответствует шаблону"},
 	"alert_test_fail":{"message": "URl НЕ соответствует шаблону"},
 	"alert_reset":{"message": "Для того чтобы сделать полный сброс впишите \"reset\" в поле вводе и нажмите OK"},
-	"alert_no_reset":{"message": "Статистика не очищена"}
+	"alert_no_reset":{"message": "Статистика не очищена"},
+	"option_idle_check":{"message":"Активировать"}
 }

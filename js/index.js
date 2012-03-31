@@ -1,4 +1,4 @@
-﻿/* --Стандартные значения  -- */
+﻿//область пемеренных
 var DomainArray = new Array();
 var UserRegExpArray = new Array();
 var TO;
@@ -7,13 +7,15 @@ var ID_DomainPage,Name_UserRegExpPage,idx_UserRegExpArray;
 var Interval = 2;
 function FuncCT(){clearTimeout(TO);er('Сброс таймера');FocusDomain='';BadgeUpdate();}
 
+/* -- Выставляет стандартные значения -- */
 if(!local.getItem('D_'+GetCurDate().full)) local.setItem('D_'+GetCurDate().full, JSON.stringify([]));	
 if(!local.getItem('UserRegExpPattern')) local.setItem('UserRegExpPattern', JSON.stringify([]));
 if(!local.getItem('TOTAL')) local.setItem('TOTAL', JSON.stringify([]));
 if(!local.getItem('ThreeLVLDomain')) local.setItem('ThreeLVLDomain', JSON.stringify(['google.com','google.ru','ucoz.ru','narod.ru']));
+if(!local.getItem('IdleTime')) local.setItem('IdleTime', JSON.stringify(5));
 
-/* ---Собития----- */
-window.onLoad = IndexFload();   
+//Присоединяем уникальный срипт браузера
+if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js',function(){IndexFload();});
 
 /* 
 Тут вставляются некоторые функции из _chrome.js/_opera.js
@@ -95,6 +97,8 @@ function PushUserRE(Name_UserRegExpPage,ID_DomainPage,idx_UserRegExpArray){
 		UserRegExpArray[idx_UserRegExpArray][1]=0;
 	}
 }
+
+
 
 function PushStat(domain, idx_DomainArray){
 	DomainArray[idx_DomainArray][1]+=Interval;

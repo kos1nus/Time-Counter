@@ -1,15 +1,15 @@
-function GetAbout(){return 'Ver: 1.2.1 || <b>kos1nus</b> || ortodox.kos1nus@gmail.com'}
+п»їfunction GetAbout(){return 'Ver: 1.2.1 || <b>kos1nus</b> || ortodox.kos1nus@gmail.com'}
 function OpenNewTab(value){
 	er(value+' open');
 	window.open(value);
 }	
 function i18n(name){return	chrome.i18n.getMessage(name);}
 
-//Часть срипта из INDEX.JS
+//Р§Р°СЃС‚СЊ СЃСЂРёРїС‚Р° РёР· INDEX.JS
 function IndexFload(){
 	chrome.windows.onFocusChanged.addListener(function(windowId){
-		if(windowId == -1){er('Главное окно НЕ активно');FuncCT();}
-		else{er('Главное окно активно');TabOnFocus();}
+		if(windowId == -1){er('Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ РќР• Р°РєС‚РёРІРЅРѕ');FuncCT();}
+		else{er('Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ Р°РєС‚РёРІРЅРѕ');TabOnFocus();}
 	});
 	chrome.tabs.onActiveChanged.addListener(function(){TabOnFocus();});
 	chrome.tabs.onUpdated.addListener(function(){TabOnFocus();});
@@ -17,11 +17,11 @@ function IndexFload(){
 
 function TabOnFocus(){
 	chrome.tabs.getSelected(null, function(tab){
-		if(GlobalFocus == true && !/chrome:|chrome-extension:/.test(tab.url) && tab.url!=''){
+		if(!/chrome:|chrome-extension:/.test(tab.url) && tab.url!=''){
 			CheckDomain(tab.url);
 			BadgeUpdate(fnGetDomain(tab.url));
 		}else{
-			er('Нет активной вкладки, Глобальный фокус - '+GlobalFocus); FuncCT();
+			er('РќРµС‚ Р°РєС‚РёРІРЅРѕР№ РІРєР»Р°РґРєРё'); FuncCT();
 		}
 	});
 }

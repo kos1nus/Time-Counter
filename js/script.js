@@ -1,10 +1,10 @@
-﻿//add events
-addEventListener('DOMContentLoaded',Fload,false);
-
-//var
+﻿//объявление переменных
 var chart, G_click=true;
 
-//load Function
+//Присоединяем уникальный срипт браузера
+if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js',function(){Fload();});
+
+//Стартовая функция
 function Fload(){
 	var dom_elems = document.querySelectorAll('input[type="button"]');
 	for(var i=0; i<dom_elems.length; i++){dom_elems[i].value = i18n(dom_elems[i].id);}
@@ -39,7 +39,7 @@ function Fload(){
 	AddGraf('D_'+GetCurDate().full);
 }
 
-function ChClass(e){
+function ChClass(e){//При клике на кнокпи меняется их класс.
 	if (QSF('.button_selected')){QSF('.button_selected').setAttribute('class','button');}
 	e.setAttribute('class','button_selected');
 }
@@ -50,6 +50,16 @@ function AddGraf(base){
 	var ttl = 0;
 	var MainCharData = new Array();
 	
+	if (count==0) {
+		var container = QSF('#container');
+			container.innerHTML = '';
+		var divElem = document.createElement('div');
+			divElem.setAttribute('style','display:table-cell; height:200px; width:600px; vertical-align:middle; text-align:center; font:18px/22px Trebuchet MS;');
+			divElem.innerHTML = i18n('no_statistic');
+		container.appendChild(divElem);
+		return false;
+	};
+
 	for(i=0; i<count; i++){ttl += TempArray[i][1];}
 	var balance = ttl;
 	for(i=0; i<count; i++){
@@ -60,26 +70,26 @@ function AddGraf(base){
 	}
 	if(balance>0)MainCharData.push([i18n('code_other'), balance]);
 	
-	//var chart;
-	$(document).ready(function() {
+	//Постраение круговой диаграммы
+	$(document).ready(function(){
 		chart = new Highcharts.Chart({
 			chart:{renderTo:'container', plotBackgroundColor:null, plotBorderWidth:null, plotShadow:false,backgroundColor:null},
 			title:{text:i18n('code_total')+': '+GetGoodTime(ttl).hm},
 			tooltip:{formatter: function(){return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';}},
 			legend:{enabled:true, floating:false, layout:'horizontal', x:0, y:0},
-			credits:{enabled: false},
-			exporting:{enabled: false},
+			credits:{enabled:false},
+			exporting:{enabled:false},
 			plotOptions:{pie:{
-				allowPointSelect: false,
-				cursor: 'pointer',
+				allowPointSelect:false,
+				cursor:'pointer',
 				point:{events:{click:function(){if(this.name!=i18n('code_other') && this.name!='LAN' && this.name!='localhost' && G_click==true){OpenNewTab('http://'+this.name);}}}},
 				animation:false,
 				size:'60%',
 				showInLegend:true,
-				dataLabels: {
-					enabled: true,
-					color: '#000000',
-					connectorColor: '#000000',
+				dataLabels:{
+					enabled:true,
+					color:'#000000',
+					connectorColor:'#000000',
 					formatter: function(){return '<b>'+ this.point.name +'</b>: ' + GetGoodTime(this.point.y).hm;}			
 				}
 			}},
