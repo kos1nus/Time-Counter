@@ -40,7 +40,7 @@ function GetCurDate(){//возвращает текущую дату.
 
 function include(url,callback){
     // adding the script tag to the head as suggested before
-   var head = document.getElementsByTagName('head')[0];
+   var head = QSF('head');
    var script = document.createElement('script');
    script.type = 'text/javascript';
    script.src = url;

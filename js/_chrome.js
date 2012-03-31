@@ -1,4 +1,4 @@
-﻿function GetAbout(){return 'Ver: 1.2.1 || <b>kos1nus</b> || ortodox.kos1nus@gmail.com'}
+﻿function GetAbout(){return 'Ver: 1.3 || <b>kos1nus</b> || ortodox.kos1nus@gmail.com'}
 function OpenNewTab(value){
 	er(value+' open');
 	window.open(value);
@@ -6,6 +6,8 @@ function OpenNewTab(value){
 function i18n(name){return	chrome.i18n.getMessage(name);}
 
 //Часть срипта из INDEX.JS
+var IdleState = false;
+
 function IndexFload(){
 	chrome.windows.onFocusChanged.addListener(function(windowId){
 		if(windowId == -1){er('Главное окно НЕ активно');FuncCT();}
@@ -45,3 +47,32 @@ function BadgeUpdate(domain,value){
 	var a = GetGoodTime(value)
 	chrome.browserAction.setBadgeText({text:(a.m>9)? a.h+':'+a.m :a.h+':0'+a.m});		
 } 
+
+
+//простой компьютера
+chrome.idle.onStateChanged.addListener(function(newstate){er("Браузер сейчас " + newstate);});
+setInterval(function(){
+	var G_focus;
+	chrome.windows.getCurrent(function(e){if(e.focused == false) G_focus = false});
+	
+	var idle_time = parseInt(local.getItem('IdleTime'));
+	if(idle_time > 0  && G_focus==true){
+		chrome.idle.queryState(idle_time*60, function (state){
+			if(state=='active'){
+				if(IdleState==true){ TabOnFocus(); IdleState = false; WebNotifi(IdleState);}
+			}else{
+				if(IdleState==false){ FuncCT(); IdleState = true; WebNotifi(IdleState);}		
+			}							
+		});
+	}
+}, 2000);
+
+function WebNotifi(state){
+	var message = (state==true)? i18n('alert_idle_true'):i18n('alert_idle_false');
+	var notification = webkitNotifications.createNotification('',message,'');
+	notification.ondisplay = function(){setTimeout(function(){notification.cancel();},5000);}
+	notification.show(); 
+}
+	
+//Часть срипта из страницы настроек
+function FuncChangeIdleTime(){return false;}

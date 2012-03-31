@@ -2,8 +2,11 @@
 var chart, G_click=true;
 
 //Присоединяем уникальный срипт браузера
-if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js',function(){Fload();});
-
+if(navigator.appName == 'Opera')
+	window.addEventListener('DOMContentLoaded',function(){include('js/_opera.js',Fload)},false); 
+else
+	include('js/_chrome.js',function(){Fload();});
+	
 //Стартовая функция
 function Fload(){
 	var dom_elems = document.querySelectorAll('input[type="button"]');

@@ -2,7 +2,10 @@
 var UserRegExpPattern, select_pattern, txt_pattern, ThreeLVLDomain, select_ThreeLVLDomain;
 			
 //Присоединяем уникальный срипт браузера
-if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js',function(){Fload();});
+if(navigator.appName == 'Opera')
+	window.addEventListener('DOMContentLoaded',function(){include('js/_opera.js',Fload)},false); 
+else
+	include('js/_chrome.js',function(){Fload();});
 
 //стартовая функция			
 function Fload(){

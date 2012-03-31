@@ -4,8 +4,11 @@ var ch1_value='.*';
 var chart_item, chart_type, Chart_Main, date_F, date_T, open_set_interval, div_set_interval, sel_1, sel_2;
 
 //Присоединяем уникальный срипт браузера
-if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js',function(){Fload();});
-
+if(navigator.appName == 'Opera')
+	window.addEventListener('DOMContentLoaded',function(){include('js/_opera.js',Fload)},false); 
+else
+	include('js/_chrome.js',function(){Fload();});
+	
 //-------
 function Fload(){//первая загрузка
 	if(local.getItem('DomainIdPage') && local.getItem('U_'+local.getItem('DomainIdPage'))){

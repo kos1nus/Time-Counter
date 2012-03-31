@@ -15,8 +15,14 @@ if(!local.getItem('ThreeLVLDomain')) local.setItem('ThreeLVLDomain', JSON.string
 if(!local.getItem('IdleTime')) local.setItem('IdleTime', JSON.stringify(5));
 
 //Присоединяем уникальный срипт браузера
-if(navigator.appName == 'Opera') include('js/_opera.js'); else include('js/_chrome.js',function(){IndexFload();});
-
+if(navigator.appName == 'Opera'){
+	console.log('Opera - the best browser!');
+	include('js/_opera.js',function(){IndexFload();}); 
+}else{
+	console.log('You use Chrome, but the best browser is Opera! :)');
+	include('js/_chrome.js',function(){IndexFload();});
+}
+	
 /* 
 Тут вставляются некоторые функции из _chrome.js/_opera.js
 */

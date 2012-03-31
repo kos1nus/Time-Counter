@@ -45,7 +45,7 @@ function IndexFload(){
 	opera.extension.windows.onfocus = function(){er('Главное окно активно'); TabOnFocus();}
 	opera.extension.tabs.onfocus = function(){TabOnFocus();}
 	opera.extension.onconnect = function(e){
-		e.source.postMessage({action:'change_idle_time',value:local.getItem('IdleTime')});
+		e.source.postMessage({action:'connect',value:local.getItem('IdleTime'),idle_m:i18n('alert_idle_true')});
 		TabOnFocus();
 	}
 	opera.extension.onmessage = function(e){
